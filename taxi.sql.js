@@ -11,6 +11,8 @@ await db.migrate();
 export async function joinQueue() {
   // Insert a new passenger into the queue
   await db.run("INSERT INTO taxi_queue (passenger_queue_count) VALUES (1)");
+  await db.run("UPDATE taxi_queue SET passenger_queue_count = passenger_queue_count + 1");
+
 }
 
 export async function leaveQueue() {
@@ -18,6 +20,9 @@ export async function leaveQueue() {
   await db.run(
     "DELETE FROM taxi_queue WHERE id = (SELECT MIN(id) FROM taxi_queue WHERE passenger_queue_count > 0)"
   );
+   // Decrement the passenger_queue_count by 1
+   await db.run("UPDATE taxi_queue SET passenger_queue_count = passenger_queue_count - 1");
+
 }
 
 export async function queueLength() {
@@ -47,6 +52,8 @@ export async function taxiDepart() {
     if (taxiCount > 0) {
       // Calculate the number of taxis that can depart
       const taxisToDepart = Math.min(taxiCount, passengerCount >= 12 ? taxiCount : 0);
+
+      console.log(taxisToDepart);
   
       if (taxisToDepart > 0) {
         // Remove taxis from the queue

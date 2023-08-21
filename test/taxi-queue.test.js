@@ -129,11 +129,11 @@ describe('The taxi queue app', function() {
 		assert.equal(11, await queueLength());
 
 		// this function call should do nothing as there is not enough passengers in the queue
-		taxiDepart();
+		await taxiDepart();
 
 		// data after a taxi departed
-		assert.equal(3, taxiQueueLength());
-		assert.equal(11, queueLength());
+		assert.equal(3, await taxiQueueLength());
+		assert.equal(11, await queueLength());
 
 	});
 
@@ -160,10 +160,10 @@ describe('The taxi queue app', function() {
 		assert.equal(15, await queueLength());
 
 		// this function call should do nothing as there is no taxis in the taxi queue
-		taxiDepart();
+		await taxiDepart();
 		
 		// data after a taxi departed
-		assert.equal(0,await queueLength());
+		assert.equal(0,await taxiQueueLength());
 		assert.equal(15, await queueLength());
 
 	});
