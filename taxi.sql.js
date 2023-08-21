@@ -43,6 +43,8 @@ export async function taxiQueueLength() {
   const result = await db.get(
     "SELECT SUM(taxi_queue_count) AS count FROM taxi_queue"
   );
+  await db.run("UPDATE taxi_queue SET taxi_queue_count = taxi_queue_count  + 1");
+
   return result.count || 0;
 }
 export async function taxiDepart() {
