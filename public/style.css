@@ -1,0 +1,47 @@
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: darkgray
+}
+
+
+.count {
+	font-size: 4em;
+	padding: 0.1em;
+	border: 2px solid;
+	background-color: orchid;
+	border-radius: 0.1em;
+}
+
+.section {
+	flex: 1;
+	background-color: steelblue;
+	padding: 2em;
+	margin: 1em;
+	border-radius: 0.5em;
+}
+
+button {
+	padding: 1em;
+	border-radius: 0.5em;
+	font-weight: bold;
+}
+
+@media (min-width: 768px) {
+	.sections {
+		display: flex;
+	}
+}
+
+
+.link {
+	border: 0.25em solid;
+	margin: 1em;
+	padding: 1em;
+	width: 12em;
+	text-align: center;
+	border-radius: 0.5em;
+}
+
+.link:hover {
+	background-color: plum;
+}
